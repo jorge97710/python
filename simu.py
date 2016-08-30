@@ -49,16 +49,16 @@ cpu = simpy.Resource(env, capacity=1) #cpu
 ram = simpy.Container(env, init=memoriaRam, capacity=memoriaRam) #capacidad de memoria es 100
 os = simpy.Resource(env, capacity=1) 
 tiempoTotal = 0.0   #tiempo de todos los procesos
-noprocesos = 100 #numero de procesos
+noprocesos = 25 #numero de procesos
 RANDOM_SEED = 42 #Semilla
 random.seed(RANDOM_SEED)
-interval = 10 #Intervalo
-velocidad = 3 #Velocidad
+interval = 1 #Intervalo
+velocidad = 6 #Velocidad
 control=[] #Lista para tener lso tiempos
 # crear los procesos
 for i in range(noprocesos):
     t = random.expovariate(1.0 / interval)
-    env.process(proceso(env, 'Proceso %d' % i, cpu, t, 1,3))
+    env.process(proceso(env, 'Proceso %d' % i, cpu, t, 1,velocidad))
 # correr la simulacion
 env.run()
 
